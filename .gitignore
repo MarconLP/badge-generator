@@ -40,4 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/data/sample_tickets.csv
+/data/tickets.csv
