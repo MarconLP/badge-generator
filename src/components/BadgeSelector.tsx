@@ -22,11 +22,11 @@ import badges from "../../data/tickets.json";
 import { Badge } from "@/app/page";
 
 export function BadgeSelector({
-    currentBadge,
-    setCurrentBadge
+  currentBadge,
+  setCurrentBadge,
 }: {
-    currentBadge: Badge | null,
-    setCurrentBadge: (badge: Badge | null) => void
+  currentBadge: Badge | null;
+  setCurrentBadge: (badge: Badge | null) => void;
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -57,7 +57,9 @@ export function BadgeSelector({
                   value={`${badge.name} - ${badge.id}`}
                   onSelect={(currentValue) => {
                     const id = currentValue.split(" - ")[1];
-                    setCurrentBadge(badges.find((badge) => badge.id === id) || null);
+                    setCurrentBadge(
+                      badges.find((badge) => badge.id === id) || null,
+                    );
                     setOpen(false);
                   }}
                 >
@@ -65,7 +67,9 @@ export function BadgeSelector({
                   <Check
                     className={cn(
                       "ml-auto",
-                      currentBadge?.id === badge.id ? "opacity-100" : "opacity-0",
+                      currentBadge?.id === badge.id
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                 </CommandItem>
