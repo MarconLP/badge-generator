@@ -19,28 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
+const badges = []
 
 export function BadgeSelector() {
   const [open, setOpen] = React.useState(false);
@@ -56,31 +35,31 @@ export function BadgeSelector() {
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? badges.find((badge) => badge.id === value)?.name
+            : "Select badge..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search badge..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No badges found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {badges.map((badge) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={badge.id}
+                  value={badge.id}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
                   }}
                 >
-                  {framework.label}
+                  {badge.name}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0",
+                      value === badge.id ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
