@@ -16,38 +16,37 @@ const styles = StyleSheet.create({
     width: 320,
     height: 480,
     backgroundColor: '#fff',
-    borderRadius: 10,
-    borderWidth: 6,
-    borderColor: '#222',
-    overflow: 'hidden',
-    display: 'flex',
     flexDirection: 'column',
+    display: 'flex',
   },
   header: {
     backgroundColor: '#4B6B67',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    paddingLeft: 18,
+    paddingRight: 18,
+    paddingTop: 12,
+    paddingBottom: 12,
     height: 70,
   },
   logo: {
     width: 80,
     height: 32,
-    objectFit: 'contain',
   },
   contentWrapper: {
+    display: 'flex',
     flex: 1,
     justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 0,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   name: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: 700,
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 2,
@@ -55,10 +54,10 @@ const styles = StyleSheet.create({
   surname: {
     fontSize: 20,
     textAlign: 'center',
-    marginBottom: 2,
+    marginBottom: 10,
   },
   affiliation: {
-    fontSize: 18,
+    fontSize: 26,
     textAlign: 'center',
     marginBottom: 16,
   },
@@ -67,18 +66,19 @@ const styles = StyleSheet.create({
     height: 90,
     marginTop: 8,
     marginBottom: 8,
-    alignSelf: 'center',
   },
   roleBanner: {
+    display: 'flex',
     backgroundColor: '#9B7676',
-    paddingVertical: 12,
+    paddingTop: 12,
+    paddingBottom: 12,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
   },
   roleText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: 700,
     fontSize: 24,
     textAlign: 'center',
     letterSpacing: 1,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     height: 36,
     width: '100%',
   },
-});
+})
 
 export const BadgePreview = () => (
   <Document>
@@ -115,4 +115,4 @@ export const BadgePreview = () => (
       </View>
     </Page>
   </Document>
-);
+)

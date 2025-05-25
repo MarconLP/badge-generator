@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div>
+        <div className="drop-shadow-xs">
           <BadgePreview />
         </div>
       </div>
