@@ -18,8 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-const badges = []
+import badges from "../../data/tickets.json";
 
 export function BadgeSelector() {
   const [open, setOpen] = React.useState(false);
