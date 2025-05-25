@@ -1,9 +1,11 @@
-import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+'use client'
 
-const LOGO_LEFT = 'https://via.placeholder.com/100x40?text=Logo+1'; // Replace with actual logo URL or base64
-const LOGO_RIGHT = 'https://via.placeholder.com/100x40?text=Logo+2'; // Replace with actual logo URL or base64
-const QR_CODE = 'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=MaxMustermann'; // Replace with actual QR code
+import React from 'react';
+import { Page, Text, View, Document, StyleSheet, Image, PDFViewer } from '@react-pdf/renderer'
+import STARTUP_CONTACTS_LOGO from '../../public/startup-contacts.png'
+import VENTURE_CLUB_LOGO from '../../public/venture-club.png'
+
+const QR_CODE = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=linkedin.com'
 
 const styles = StyleSheet.create({
   page: {
@@ -13,19 +15,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   badge: {
+    display: 'flex',
     width: 320,
     height: 480,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    display: 'flex',
   },
   header: {
+    display: 'flex',
     backgroundColor: '#4B6B67',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 18,
-    paddingRight: 18,
+    paddingLeft: 32,
+    paddingRight: 32,
     paddingTop: 12,
     paddingBottom: 12,
     height: 70,
@@ -91,28 +94,30 @@ const styles = StyleSheet.create({
 })
 
 export const BadgePreview = () => (
-  <Document>
-    <Page size={{ width: 340, height: 500 }} style={styles.page}>
-      <View style={styles.badge}>
-        {/* Header with logos */}
-        <View style={styles.header}>
-          <Image src={LOGO_LEFT} style={styles.logo} />
-          <Image src={LOGO_RIGHT} style={styles.logo} />
+  <PDFViewer height={500} width={340}>
+    <Document>
+        <Page size={{ width: 340, height: 500 }} style={styles.page}>
+        <View style={styles.badge}>
+            {/* Header with logos */}
+            <View style={styles.header}>
+            <Image src={VENTURE_CLUB_LOGO.src} style={styles.logo} />
+            <Image src={STARTUP_CONTACTS_LOGO.src} style={styles.logo} />
+            </View>
+            {/* Main content */}
+            <View style={styles.contentWrapper}>
+            <Text style={styles.name}>Max</Text>
+            <Text style={styles.surname}>Mustermann</Text>
+            <Text style={styles.affiliation}>WWU Münster</Text>
+            <Image src={QR_CODE} style={styles.qr} />
+            </View>
+            {/* Role banner */}
+            <View style={styles.roleBanner}>
+            <Text style={styles.roleText}>SPEAKER</Text>
+            </View>
+            {/* Footer color bar */}
+            <View style={styles.footer} />
         </View>
-        {/* Main content */}
-        <View style={styles.contentWrapper}>
-          <Text style={styles.name}>Max</Text>
-          <Text style={styles.surname}>Mustermann</Text>
-          <Text style={styles.affiliation}>WWU Münster</Text>
-          <Image src={QR_CODE} style={styles.qr} />
-        </View>
-        {/* Role banner */}
-        <View style={styles.roleBanner}>
-          <Text style={styles.roleText}>SPEAKER</Text>
-        </View>
-        {/* Footer color bar */}
-        <View style={styles.footer} />
-      </View>
-    </Page>
-  </Document>
+        </Page>
+    </Document>
+  </PDFViewer>
 )
