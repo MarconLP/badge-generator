@@ -5,7 +5,7 @@ import { Page, Text, View, Document, StyleSheet, Image, PDFViewer } from '@react
 import STARTUP_CONTACTS_LOGO from '../../public/startup-contacts.png'
 import VENTURE_CLUB_LOGO from '../../public/venture-club.png'
 
-const QR_CODE = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=linkedin.com'
+const QR_CODE = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/marcus-hof'
 
 const styles = StyleSheet.create({
   page: {
