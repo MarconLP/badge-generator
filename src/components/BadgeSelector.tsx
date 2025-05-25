@@ -19,46 +19,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import badges from "../../data/tickets.json";
+import { Badge } from "@/app/page";
 
-export interface Badge {
-    name: string
-    firstname: string
-    lastname: string
-    barcode: string
-    eventId: string
-    "event.name": string
-    "event.start": string
-    customerId: string
-    transactionId: string
-    ticketTypeId: string
-    underShopId: string
-    id: string
-    secret: string
-    email: string
-    ticketName: string
-    category: string
-    price: string
-    status: string
-    deliveryType: string
-    cartItemId: string
-    triggeredBy: string
-    origin: string
-    createdAt: string
-    "extraFields.afterparty": string
-    "extraFields.afterwork": string
-    "extraFields.an_welcher_uni_studierst_du": string
-    "extraFields.linkedin": string
-    "extraFields.spezifizierung_normales_ticket": string
-    "extraFields.studentenausweis": string
-    "extraFields.studiengang": string
-    "extraFields.umfrage": string
-    "extraFields.umfrage_1": string
-  }
-  
-
-export function BadgeSelector() {
+export function BadgeSelector({
+    currentBadge,
+    setCurrentBadge
+}: {
+    currentBadge: Badge | null,
+    setCurrentBadge: (badge: Badge | null) => void
+}) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<Badge | null>(null);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -69,8 +39,8 @@ export function BadgeSelector() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? badges.find((badge) => badge.id === value?.id)?.name
+          {currentBadge
+            ? badges.find((badge) => badge.id === currentBadge.id)?.name
             : "Select badge..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
@@ -87,7 +57,7 @@ export function BadgeSelector() {
                   value={`${badge.name} - ${badge.id}`}
                   onSelect={(currentValue) => {
                     const id = currentValue.split(" - ")[1];
-                    setValue(badges.find((badge) => badge.id === id) || null);
+                    setCurrentBadge(badges.find((badge) => badge.id === id) || null);
                     setOpen(false);
                   }}
                 >
@@ -95,7 +65,7 @@ export function BadgeSelector() {
                   <Check
                     className={cn(
                       "ml-auto",
-                      value?.id === badge.id ? "opacity-100" : "opacity-0",
+                      currentBadge?.id === badge.id ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>

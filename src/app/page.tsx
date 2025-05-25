@@ -1,7 +1,47 @@
+"use client"
+
 import { BadgePreview } from "@/components/BadgePreview";
 import { BadgeSelector } from "@/components/BadgeSelector";
+import { useState } from "react";
+
+export interface Badge {
+  name: string
+  firstname: string
+  lastname: string
+  barcode: string
+  eventId: string
+  "event.name": string
+  "event.start": string
+  customerId: string
+  transactionId: string
+  ticketTypeId: string
+  underShopId: string
+  id: string
+  secret: string
+  email: string
+  ticketName: string
+  category: string
+  price: string
+  status: string
+  deliveryType: string
+  cartItemId: string
+  triggeredBy: string
+  origin: string
+  createdAt: string
+  "extraFields.afterparty": string
+  "extraFields.afterwork": string
+  "extraFields.an_welcher_uni_studierst_du": string
+  "extraFields.linkedin": string
+  "extraFields.spezifizierung_normales_ticket": string
+  "extraFields.studentenausweis": string
+  "extraFields.studiengang": string
+  "extraFields.affiliation": string
+  "extraFields.role": string
+}
 
 export default function Home() {
+  const [currentBadge, setCurrentBadge] = useState<Badge | null>(null);
+
   return (
     <div className="flex justify-around items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -9,7 +49,7 @@ export default function Home() {
           <p className="tracking-[-.01em]">Print a badge</p>
 
           <div className="mt-4">
-            <BadgeSelector />
+            <BadgeSelector setCurrentBadge={setCurrentBadge} currentBadge={currentBadge} />
           </div>
         </div>
 
@@ -26,7 +66,7 @@ export default function Home() {
       </div>
       <div>
         <div className="drop-shadow-xs">
-          <BadgePreview />
+          <BadgePreview currentBadge={currentBadge} />
         </div>
       </div>
     </div>

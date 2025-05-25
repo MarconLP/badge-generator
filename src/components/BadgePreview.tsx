@@ -4,8 +4,7 @@ import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image, PDFViewer } from '@react-pdf/renderer'
 import STARTUP_CONTACTS_LOGO from '../../public/startup-contacts.png'
 import VENTURE_CLUB_LOGO from '../../public/venture-club.png'
-
-const QR_CODE = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/marcus-hof'
+import { Badge } from '@/app/page';
 
 const styles = StyleSheet.create({
   page: {
@@ -93,7 +92,11 @@ const styles = StyleSheet.create({
   },
 })
 
-export const BadgePreview = () => (
+export const BadgePreview = ({
+    currentBadge,
+}: {
+    currentBadge: Badge | null,
+}) => (
   <PDFViewer height={500} width={340}>
     <Document>
         <Page size={{ width: 340, height: 500 }} style={styles.page}>
@@ -105,14 +108,14 @@ export const BadgePreview = () => (
             </View>
             {/* Main content */}
             <View style={styles.contentWrapper}>
-            <Text style={styles.name}>Max</Text>
-            <Text style={styles.surname}>Mustermann</Text>
-            <Text style={styles.affiliation}>WWU Münster</Text>
-            <Image src={QR_CODE} style={styles.qr} />
+            <Text style={styles.name}>{currentBadge?.firstname}</Text>
+            <Text style={styles.surname}>{currentBadge?.lastname}</Text>
+            <Text style={styles.affiliation}>{currentBadge?.['extraFields.affiliation']}</Text>
+            <Image src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/${currentBadge?.['extraFields.linkedin']}`} style={styles.qr} />
             </View>
             {/* Role banner */}
             <View style={styles.roleBanner}>
-            <Text style={styles.roleText}>SPEAKER</Text>
+            <Text style={styles.roleText}>{currentBadge?.['extraFields.role']}</Text>
             </View>
             {/* Footer color bar */}
             <View style={styles.footer} />
