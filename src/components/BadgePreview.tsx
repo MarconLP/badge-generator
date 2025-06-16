@@ -11,7 +11,6 @@ import {
   PDFViewer,
 } from "@react-pdf/renderer";
 import STARTUP_CONTACTS_LOGO from "../../public/startup-contacts.png";
-import VENTURE_CLUB_LOGO from "../../public/venture-club.png";
 import { Badge } from "@/app/page";
 
 const styles = StyleSheet.create({
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     display: "flex",
     backgroundColor: "#4B6B67",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     paddingLeft: 32,
     paddingRight: 32,
@@ -111,7 +110,6 @@ export const BadgePreview = ({
         <View style={styles.badge}>
           {/* Header with logos */}
           <View style={styles.header}>
-            <Image src={VENTURE_CLUB_LOGO.src} style={styles.logo} />
             <Image src={STARTUP_CONTACTS_LOGO.src} style={styles.logo} />
           </View>
           {/* Main content */}
