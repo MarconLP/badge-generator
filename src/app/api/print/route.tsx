@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     },
     badge: {
       display: "flex",
-      width: 320,
-      height: 480,
+      width: 364.7,
+      height: 506.4,
       backgroundColor: "#fff",
       flexDirection: "column",
     },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 
 const BadgeDocument = ({ currentBadge }: { currentBadge: Badge }) => (
     <Document>
-      <Page size={{ width: 340, height: 500 }} style={styles.page}>
+      <Page size={{ width: 364.7, height: 506.4 }} style={styles.page}>
         <View style={styles.badge}>
           {/* Header with logos */}
           <View style={styles.header}>
