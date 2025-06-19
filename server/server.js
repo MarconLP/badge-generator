@@ -58,7 +58,7 @@ const getTicketType = (type) => {
     }
 }
 
-app.get('/api/print', async (req, res) => {
+app.post('/api/print', async (req, res) => {
   // const { data: { scan: { ticketId }} } = await req.body;
   const ticketId = '6828848d201210c5561b7a0e'
   const currentBadge = tickets.find((badge) => badge.id === ticketId);
