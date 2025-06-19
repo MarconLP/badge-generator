@@ -14,6 +14,10 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
+function sleep(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+} 
+
 app.get('/api/print', async (req, res) => {
   // const { data: { scan: { ticketId }} } = await req.body;
   const ticketId = '6828848d201210c5561b7a03'
@@ -54,7 +58,7 @@ app.get('/api/print', async (req, res) => {
 
   doc.end();
 
-  sleep.sleep(1);
+  await sleep(1000);
 
   const filePath = path.join(__dirname, 'assets', 'badge.pdf');
 
