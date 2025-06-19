@@ -49,6 +49,12 @@ const getTicketType = (badge) => {
   }
 }
 
+// Array of available printers
+const printers = ['EPSON CW-C4000e', 'EPSON CW-C4000e (Kopie 1)', 'EPSON CW-C4000e (Kopie 2)'];
+
+// Counter to track which printer to use next
+let printerCounter = 0;
+
 app.post('/api/print', async (req, res) => {
   const { data: { scan: { ticketId }} } = await req.body;
   const currentBadge = tickets.find((badge) => badge.id === ticketId);
@@ -94,9 +100,18 @@ app.post('/api/print', async (req, res) => {
 
   const filePath = path.join(__dirname, 'assets', 'badge.pdf');
 
+    // Select the printer based on the counter
+  const selectedPrinter = printers[printerCounter];
+
   try {
-    await print(filePath);
+    await print(filePath, {
+    printer: selectedPrinter,
+    });
     console.log('File sent to printer.');
+
+    // Increment the counter and wrap around if necessary
+    printerCounter = (printerCounter + 1) % printers.length;
+
     return res.sendStatus(200);
   } catch (err) {
     console.error('Print error:', err);
