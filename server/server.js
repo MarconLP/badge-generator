@@ -5,6 +5,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const tickets = require('../data/tickets.json');
 const bodyParser = require('body-parser');
+const sleep = require('sleep');
 
 const app = express();
 const PORT = 3002;
@@ -52,6 +53,8 @@ app.get('/api/print', async (req, res) => {
      .text('SPEAKER', 0, 660, { align: 'center' });
 
   doc.end();
+
+  sleep.sleep(1);
 
   const filePath = path.join(__dirname, 'assets', 'badge.pdf');
 
