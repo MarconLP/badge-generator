@@ -62,7 +62,7 @@ app.post('/api/print', async (req, res) => {
   doc.pipe(fs.createWriteStream('assets/badge.pdf'));
 
   // Logo
-  doc.image('assets/startup-contacts.png', 61, 20, { width: 150 });
+  doc.image('assets/startup-contacts.png', 61, 30, { width: 150 });
 
   // Name
   doc.fontSize(28)
