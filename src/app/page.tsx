@@ -54,6 +54,9 @@ export default function Home() {
     fetch('http://localhost:3002/api/print', {
       method: 'POST',
       body: JSON.stringify({ data: { scan: { ticketId: currentBadge.id } } }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
     });
   };
 
