@@ -45,3 +45,4 @@ next-env.d.ts
 /public/temp.pdf
 
 /server/node_modules
+/server/assets/badge.pdf
