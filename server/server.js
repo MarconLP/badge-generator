@@ -13,10 +13,10 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
-app.post('/api/print', async (req, res) => {
-  const { data: { scan: { ticketId }} } = await req.body;
+app.get('/api/print', async (req, res) => {
+  // const { data: { scan: { ticketId }} } = await req.body;
+  const ticketId = '6828848d201210c5561b7a03'
   const currentBadge = tickets.find((badge) => badge.id === ticketId);
-  console.log(currentBadge);
 
   const doc = new PDFDocument({
     size: [273, 380],
