@@ -4,21 +4,22 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const tickets = require('../data/tickets.json');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = 3002;
 
 app.use(express.static('public'));
 
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get('/api/print', async (req, res) => {
-  // const { data: { scan: { ticketId }} } = await req.body;
-  const ticketId = '6828848d201210c5561b7a03'
+app.post('/api/print', async (req, res) => {
+  const { data: { scan: { ticketId }} } = await req.body;
   const currentBadge = tickets.find((badge) => badge.id === ticketId);
+  console.log(currentBadge);
 
   const doc = new PDFDocument({
-    size: [400, 700],
+    size: [273, 380],
     margin: 0
   });
 
