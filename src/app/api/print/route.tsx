@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     },
     badge: {
       display: "flex",
-      width: 364.7,
-      height: 506.4,
+      width: 274,
+      height: 380,
       backgroundColor: "#fff",
       flexDirection: "column",
     },
@@ -93,11 +93,10 @@ const styles = StyleSheet.create({
 
 const BadgeDocument = ({ currentBadge }: { currentBadge: Badge }) => (
     <Document>
-      <Page size={{ width: 364.7, height: 506.4 }} style={styles.page}>
+      <Page dpi={600} size={{ width: 273, height: 760 }} style={styles.page}>
         <View style={styles.badge}>
           {/* Header with logos */}
           <View style={styles.header}>
-            <Image src={path.join(process.cwd(), 'public', 'venture-club.png')} style={styles.logo} />
             <Image src={path.join(process.cwd(), 'public', 'startup-contacts.png')} style={styles.logo} />
           </View>
           {/* Main content */}
@@ -120,6 +119,17 @@ const BadgeDocument = ({ currentBadge }: { currentBadge: Badge }) => (
           </View>
           {/* Footer color bar */}
           <View style={styles.footer} />
+        </View>
+        <View style={styles.badge}>
+          <Text style={{
+            color: "#000",
+            fontWeight: 700,
+            fontSize: 24,
+            textAlign: "center",
+            letterSpacing: 1,
+          }}>
+            THis is the second badge page
+          </Text>
         </View>
       </Page>
     </Document>
