@@ -65,7 +65,7 @@ app.post('/api/print', async (req, res) => {
     margin: 0
   });
 
-  doc.pipe(fs.createWriteStream('assets/badge.pdf'));
+  doc.pipe(fs.createWriteStream(`assets/badge-${currentBadge.id}.pdf`));
 
   // Logo
   doc.image('assets/startup-contacts.png', 61, 40, { width: 150 });
@@ -96,9 +96,9 @@ app.post('/api/print', async (req, res) => {
 
   doc.end();
 
-  await sleep(1000);
+  await sleep(2000);
 
-  const filePath = path.join(__dirname, 'assets', 'badge.pdf');
+  const filePath = path.join(__dirname, 'assets', `badge-${currentBadge.id}.pdf`);
 
     // Select the printer based on the counter
   const selectedPrinter = printers[printerCounter];
