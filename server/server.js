@@ -5,7 +5,6 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const tickets = require('../data/tickets.json');
 const bodyParser = require('body-parser');
-const sleep = require('sleep');
 
 const app = express();
 const PORT = 3002;
