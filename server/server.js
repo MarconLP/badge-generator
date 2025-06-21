@@ -49,6 +49,17 @@ const getTicketType = (badge) => {
   }
 }
 
+const getLinkedinUrl = async (badge) => {
+  let url = 'https://www.linkedin.com/company/ventureclubmuenster/'
+  if (badge['extraFields.linkedin'] && badge['extraFields.linkedin'].includes('linkedin.com')) {
+    url = badge['extraFields.linkedin']
+  } else if (badge['extraFields.linkedin']) {
+    url = `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(badge['extraFields.linkedin'])}`
+  }
+
+  return await QRCode.toDataURL(url)
+}
+
 // Array of available printers
 const printers = ['EPSON CW-C4000e', 'EPSON CW-C4000e (Kopie 1)', 'EPSON CW-C4000e (Kopie 2)'];
 
@@ -84,7 +95,7 @@ app.post('/api/print', async (req, res) => {
      .text(customer.company === '' ? currentBadge['extraFields.an_welcher_uni_studierst_du'] : customer.company, 0, 200, { align: 'center' });
 
   // QR Code
-  doc.image(await QRCode.toDataURL(`https://linkedin.com/in/${currentBadge['extraFields.linkedin']}`), 101, 240, { width: 70, align: 'center' });
+  doc.image(await getLinkedinUrl(currentBadge), 101, 240, { width: 70, align: 'center' });
 
   // Role Banner
   doc.rect(0, 330, 273, 30)
