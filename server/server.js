@@ -5,6 +5,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const tickets = require('../data/tickets.json');
 const customers = require('../data/customer.json');
+const workshops = require('../data/workshops.json');
 const QRCode = require('qrcode');
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -18,6 +19,42 @@ app.use(cors())
 
 function sleep(time) {
   return new Promise(resolve => setTimeout(resolve, time));
+}
+
+const workshopColors = {
+  Workshop_1: '#FF0000',
+  Workshop_2: '#00FF00',
+  Workshop_3: '#0000FF',
+  Workshop_4: '#FFFF00',
+  Workshop_5: '#FF00FF',
+  Workshop_6: '#FF0000',
+  Workshop_7: '#00FF00',
+  Workshop_8: '#0000FF',
+  Workshop_9: '#FFFF00',
+  Workshop_10: '#FF00FF',
+  Workshop_11: '#FF0000',
+  Workshop_12: '#00FF00',
+  Workshop_13: '#0000FF',
+  Workshop_14: '#FFFF00',
+  Workshop_15: '#FF00FF',
+  Workshop_16: '#FF0000',
+  Workshop_17: '#00FF00',
+  Workshop_18: '#0000FF'
+}
+
+const getWorkshops = (badge) => {
+  let workshop = workshops.find((workshop) => workshop.name === badge.name);
+  if (!workshop) workshop = workshops.find((workshop) => workshop.email === badge.email);
+  if (!workshop) return [];
+
+  const colors = [];
+  Object.keys(workshop).forEach((key) => {
+    if (key.startsWith('format') && workshop[key]) {
+      colors.push(workshopColors[workshop[key]]);
+    }
+  }); 
+
+  return colors;
 }
 
 const getTicketType = (badge) => {
@@ -95,6 +132,16 @@ app.post('/api/print', async (req, res) => {
 
   // QR Code
   doc.image(await getLinkedinUrl(currentBadge), 101, 240, { width: 70, align: 'center' });
+
+  // Multi-colored bar above role banner
+  const workshops = getWorkshops(currentBadge);
+  const numColors = Math.min(5, workshops.length);
+  const barWidth = 273 / numColors;
+  
+  for (let i = 0; i < numColors; i++) {
+    doc.rect(i * barWidth, 325, barWidth, 5)
+       .fill(workshops[i]);
+  }
 
   // Role Banner
   doc.rect(0, 330, 273, 30)

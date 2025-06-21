@@ -48,6 +48,8 @@ next-env.d.ts
 /data/speakers.json
 /data/staff.csv
 /data/staff.json
+/data/workshops.csv
+/data/workshops.json
 /public/temp.pdf
 
 /server/node_modules
