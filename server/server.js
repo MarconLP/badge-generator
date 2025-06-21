@@ -87,12 +87,11 @@ app.post('/api/print', async (req, res) => {
      .text(currentBadge.lastname, 0, 150, { align: 'center' });
 
   const customer = customers.find((customer) => customer.id === currentBadge.customerId);
-  console.log(customer.company)
   // Affiliation
   doc.font('Helvetica')
      .fontSize(20)
      .fillColor('black')
-     .text(customer.company === '' ? currentBadge['extraFields.an_welcher_uni_studierst_du'] : customer.company, 0, 200, { align: 'center' });
+     .text(customer?.company ? customer.company : currentBadge['extraFields.an_welcher_uni_studierst_du'], 0, 200, { align: 'center' });
 
   // QR Code
   doc.image(await getLinkedinUrl(currentBadge), 101, 240, { width: 70, align: 'center' });
