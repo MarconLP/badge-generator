@@ -23,7 +23,7 @@ function sleep(time) {
 const getTicketType = (badge) => {
   if (badge.ticketName === 'Student') {
     return {
-      text: 'PRESS',
+      text: 'STUDENT',
       color: '#4A4A4A' 
     }
   } else if (badge.ticketName === 'Press') {
