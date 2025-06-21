@@ -44,6 +44,10 @@ next-env.d.ts
 /data/tickets.json
 /data/customer.csv
 /data/customer.json
+/data/speakers.csv
+/data/speakers.json
+/data/staff.csv
+/data/staff.json
 /public/temp.pdf
 
 /server/node_modules
