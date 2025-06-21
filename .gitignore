@@ -48,3 +48,5 @@ next-env.d.ts
 
 /server/node_modules
 /server/assets/badge.pdf
+
+/server/assets/badge-*.pdf
