@@ -22,24 +22,24 @@ function sleep(time) {
 }
 
 const workshopColors = {
-  Workshop_1: '#FF0000',
-  Workshop_2: '#00FF00',
-  Workshop_3: '#0000FF',
-  Workshop_4: '#FFFF00',
-  Workshop_5: '#FF00FF',
-  Workshop_6: '#FF0000',
-  Workshop_7: '#00FF00',
-  Workshop_8: '#0000FF',
-  Workshop_9: '#FFFF00',
-  Workshop_10: '#FF00FF',
-  Workshop_11: '#FF0000',
-  Workshop_12: '#00FF00',
-  Workshop_13: '#0000FF',
-  Workshop_14: '#FFFF00',
-  Workshop_15: '#FF00FF',
-  Workshop_16: '#FF0000',
-  Workshop_17: '#00FF00',
-  Workshop_18: '#0000FF'
+  Workshop_1: '#FF9999', // Light red
+  Workshop_2: '#99FF99', // Light green
+  Workshop_3: '#9999FF', // Light blue
+  Workshop_4: '#FFFF99', // Light yellow
+  Workshop_5: '#FF99FF', // Light magenta
+  Workshop_6: '#FFB399', // Light coral
+  Workshop_7: '#99FFB3', // Light mint
+  Workshop_8: '#99B3FF', // Light periwinkle
+  Workshop_9: '#FFE699', // Light khaki
+  Workshop_10: '#E699FF', // Light purple
+  Workshop_11: '#FF99B3', // Light pink
+  Workshop_12: '#B3FF99', // Light lime
+  Workshop_13: '#99FFE6', // Light turquoise
+  Workshop_14: '#E6FF99', // Light olive
+  Workshop_15: '#B399FF', // Light violet
+  Workshop_16: '#FF99E6', // Light rose
+  Workshop_17: '#99E6FF', // Light sky blue
+  Workshop_18: '#99FFFF'  // Light cyan
 }
 
 const getWorkshops = (badge) => {
