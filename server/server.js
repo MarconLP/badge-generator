@@ -151,6 +151,21 @@ app.post('/api/print', async (req, res) => {
      .fillColor('white')
      .text(ticketType.text.toUpperCase(), 0, 337, { align: 'center' });
 
+  // Second QR code on next page
+  doc.addPage({
+    size: [273, 380],
+    margin: 0
+  });
+
+  // Text above QR code
+  doc.font('Helvetica')
+     .fontSize(24)
+     .fillColor('black')
+     .text('Schedule', 0, 80, { align: 'center' });
+
+  // Logo
+  doc.image(await QRCode.toDataURL('https://www.startup-contacts.de'), 66, 115, { width: 140, align: 'center' });
+
   doc.end();
 
   await sleep(2000);
